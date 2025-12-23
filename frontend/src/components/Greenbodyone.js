@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import sideone from "../assets/SA1.webp";
-import vec1 from "../assets/icon3.png";
-
+// import sideone from "../assets/SA1.webp";
+// import vec1 from "../assets/icon3.png";
+const sideone = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/SA1.webp";
+const vec1 = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/icon3.png";
 function Greenbodyone() {
   return (
     <section className="relative w-full min-h-screen bg-[#5C7455] overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-20 py-12">

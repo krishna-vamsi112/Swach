@@ -18,7 +18,7 @@ const Raz = ({ amount, parentCallback }) => {
     prefill: {
       name: "Swacchh",
       contact: "9999999999",
-      email: "sv@demo.com",
+      email: "support@saffronshilajit.com",
     },
     notes: {
       address: "some address",

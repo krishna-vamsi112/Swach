@@ -43,7 +43,7 @@ import React from "react";
                 />
               </div>
 
-              <Link to="/product/68b69058231173fb3013de62">
+              <Link to="/product/6945464f68b96ea87c1ff7eb">
                 <button className="w-full py-3 mt-3 rounded-xl text-white font-medium text-sm sm:text-base
                   bg-gradient-to-r from-orange-400 to-orange-600
                   hover:from-orange-500 hover:to-orange-700
@@ -68,7 +68,7 @@ import React from "react";
                 />
               </div>
 
-              <Link to="/product/your-shilajit-product-id">
+              <Link to="/product/6945467168b96ea87c1ff7f1">
                 <button className="w-full py-3 mt-3 rounded-xl text-white font-medium text-sm sm:text-base
                   bg-gradient-to-r from-orange-400 to-orange-600
                   hover:from-orange-500 hover:to-orange-700

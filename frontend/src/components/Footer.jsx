@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.jpg";
-import bg from "../assets/bg.jpg";
+// import logo from "../assets/logo.jpg";
+// import bg from "../assets/bg.jpg";
 import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
-import Fssai from "../assets/fssai-seeklogo.png";
-import s2 from "../assets/saf3.jpg";
+// import Fssai from "../assets/fssai-seeklogo.png";
+// import s2 from "../assets/saf3.jpg";
+const logo = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/logo.jpg";
+const bg = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/bg.jpg";
+const Fssai = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/fssai-seeklogo.png";
+const s2 = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/saf3.jpg";
 
 const Footer = () => {
   const [showProducts, setShowProducts] = useState(false);
@@ -140,7 +144,7 @@ const Footer = () => {
 
       {/* Bottom Line */}
       <p className="relative mt-10 pt-4 text-center text-xs sm:text-sm border-t border-white/20">
-        © {new Date().getFullYear()} Saffron. All Rights Reserved. Developed by{" "}
+        © {new Date().getFullYear()} Saffron. All Rights Reserved. Powered by{" "}
         <span className="font-semibold text-yellow-200">Maxzen.Tech</span>
       </p>
     </footer>

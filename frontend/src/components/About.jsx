@@ -4,12 +4,22 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-import saf1 from "../assets/saf1.jpg";
-import saf2 from "../assets/saf2.jpg";
-import SA4 from "../assets/SA4.webp";
-import icon from "../assets/icon.png";
-import icon3 from "../assets/icon3.png";
-import saffMain from "../assets/saf1.jpg"; // Add a main saffron image
+// import saf1 from "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/saf1.jpg";
+// import saf2 from "../assets/saf2.jpg";
+// import SA4 from "../assets/SA4.webp";
+// import icon from "../assets/icon.png";
+// import icon3 from "../assets/icon3.png";
+// import saffMain from "../assets/saf1.jpg"; // Add a main saffron image
+
+const saf1 = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/saf1.jpg";
+const saf2 ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/saf2.jpg";
+const SA4 ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/SA4.webp";
+const icon ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/icon.png";
+const icon3 ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/icon3.png";
+const saffMain="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/saf1.jpg";
+
+
+
 
 export default function About() {
   useEffect(() => {

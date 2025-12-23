@@ -1,11 +1,15 @@
 
 import React from 'react'
-import icon3 from "../assets/icon3.png";
-import saffr from "../assets/safM.jpg"
-import shil from "../assets/shil2.jpg";
-import bg1 from "../assets/bg1.jpg";
+// import icon3 from "../assets/icon3.png";
+// import saffr from "../assets/safM.jpg"
+// import shil from "../assets/shil2.jpg";
+// import bg1 from "../assets/bg1.jpg";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+ const icon3 ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/icon3.png";
+const saffr ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/safM.jpg";
+const shil="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/shil2.jpg";
+const bg1 ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/bg1.jpg";
 
 function Greenbodythree() {
     useEffect(() => {

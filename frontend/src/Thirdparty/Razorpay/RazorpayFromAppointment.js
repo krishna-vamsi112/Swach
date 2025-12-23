@@ -26,7 +26,7 @@ const Razorpay = ({ parentCallback, amount ,setIsModalOpen}) => {
 
   const openPayModal = () => {
     const options = {
-      key:"rzp_test_0Pmy6dBozgLBY0",
+      key:"rzp_live_RkdWJEtCNKnDkB",
       amount: (amount * 1).toString(), // Convert to smallest currency unit
       name: "Swacchh",
       description: "Swacchh",

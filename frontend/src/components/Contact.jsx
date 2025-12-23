@@ -2,13 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import SH2 from "../assets/SH2.png";
 // import icon3 from "../assets/icon3.png";
-import saf3 from "../assets/saf3.jpg";
+// import saf3 from "../assets/saf3.jpg";
 // import icon from "../assets/icon.png";
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 // import { Phone } from "lucide-react";
 import { useEffect } from "react";
-import img from "../assets/SA4.webp"
-
+// import img from "../assets/SA4.webp"
+const saf3 ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/saf3.jpg";
+const img ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/SA4.webp";
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },

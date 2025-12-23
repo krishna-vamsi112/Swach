@@ -134,7 +134,7 @@ function Products() {
             </h1>
             <ul className="list-decimal md:ml-10 space-y-0 md:space-y-3 text-xl md:text-3xl font-bold font-serif">
               <li>SAFFRON</li>
-              {/* <li>SHILAJIT RESIN</li> */}
+              <li>SHILAJIT RESIN</li>
             </ul>
           </motion.div>
 
@@ -207,12 +207,11 @@ function Products() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
+                onClick={() => navigate(`/product/${p._id}`)}
               >
                 <motion.div
                   className="w-full aspect-[4/3] overflow-hidden rounded-xl"
                   whileHover={{ scale: 1.05 }}
-                  onClick={() => navigate(`/product/${p._id}`)}
-                  style={{ cursor: 'pointer' }}
                 >
                   <motion.img
                     src={p.image}

@@ -145,14 +145,14 @@
 import React from 'react'
 import ProductCard from './ProductDetail2'
 import Termsandconditions from './Termsandconditions';
-import Exploreplans from './Exploreplans';
+// import Exploreplans from './Exploreplans';
 
 function Blog() {
   return (
     <div>   
       <ProductCard/>
 <Termsandconditions/> 
-<Exploreplans/>
+{/* <Exploreplans/> */}
     </div>
   )
 }

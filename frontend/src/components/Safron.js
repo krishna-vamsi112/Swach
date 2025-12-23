@@ -1,8 +1,11 @@
 
 
 import React, { useState, useRef } from "react";
-import Saffron from "../assets/saf-v1.mp4";
-import Shila from "../assets/PixVerse_V5_Image_Text_360P (1).mp4";
+// import Saffron from "../assets/saf-v1.mp4";
+const Saffron ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/saf-v1.mp4";
+const Shila ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/PixVerse_V5_Image_Text_360P (1).mp4";
+
+// import Shila from "../assets/PixVerse_V5_Image_Text_360P (1).mp4";
 
 function Safron() {
   const videos = [Saffron, Shila]; // All videos here

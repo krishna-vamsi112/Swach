@@ -1,25 +1,39 @@
 import React from "react";
 // import card from "../assets/card.webp";
-import shil1 from "../assets/shil1.jpg";
-import saf1 from "../assets/saf1.jpg";
+// import shil1 from "../assets/shil1.jpg";
+
+// import saf1 from "../assets/saf1.jpg";
 
 import { motion } from "framer-motion";
-import saf3 from "../assets/saf3.jpg";
-import icon from "../assets/icon.png";
-import bg1 from "../assets/bg1.jpg";
-import prat from "../assets/profile.jpg";
+// import saf3 from "../assets/saf3.jpg";
+// import icon from "../assets/icon.png";
+// import bg1 from "../assets/bg1.jpg";
+// import prat from "../assets/profile.jpg";
 
 
 import { Link } from "react-router-dom";
 
-import vec2 from "../assets/icon.png"
-import shi1 from "../assets/1.jpg";
+// import vec2 from "../assets/icon.png"
+// import shi1 from "../assets/1.jpg";
 import { useEffect } from "react";
 
 import Greenbodythree from "./Greenbodythree";
-import user2 from "../assets/profile.jpg";
-import user3 from "../assets/profile.jpg";
-import user4 from "../assets/profile.jpg";
+// import user2 from "../assets/profile.jpg";
+// import user3 from "../assets/profile.jpg";
+// import user4 from "../assets/profile.jpg";
+
+
+const shil1 = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/shil1.jpg";
+const saf1 = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/saf1.jpg";
+const saf3 = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/saf3.jpg";
+const icon = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/icon.png";
+const bg1 = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/bg1.jpg";
+const prat="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/profile.jpg";
+const vec2 = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/icon.png";
+const shi1 = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/1.jpg";
+const user2 ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/profile.jpg";
+const user3 ="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/profile.jpg";
+const user4="https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/profile.jpg";
 
 
 
