@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://swacchh.com/backend/api/",
+    baseUrl: "http://localhost:5000/api/",
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
 

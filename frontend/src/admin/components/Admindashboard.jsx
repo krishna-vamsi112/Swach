@@ -39,7 +39,7 @@
 //     const [products, setProducts] = useState([]);
 
 //     React.useEffect(() => {
-//   fetch("https://swacchh.com/backend/api/products")
+//   fetch("http://localhost:5000/products")
 //     .then((res) => res.json())
 //     .then((data) => setProducts(data))
 //     .catch((err) => console.error("Error fetching products:", err));
@@ -229,7 +229,7 @@ export default function AdminDashboard() {
   const [products, setProducts] = useState([]);
 
   React.useEffect(() => {
-    fetch("https://swacchh.com/backend/api/products")
+    fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("Error fetching products:", err));

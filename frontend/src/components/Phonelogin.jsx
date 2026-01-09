@@ -1,91 +1,103 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import {
+  useSendOtpMutation,
+  useVerifyOtpMutation,
+} from "../services/apiService";
 
 function PhoneLogin() {
   const navigate = useNavigate();
   const [mobile, setMobile] = useState("");
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [msgType, setMsgType] = useState("");
 
-  const API_BASE_URL =  "https://swacchh.com/backend/api";
+  const [
+    sendOtp,
+    {
+      isLoading: isSendingOtp,
+      isSuccess: isSendOtpSuccess,
+      isError: isSendOtpError,
+      error: sendOtpError,
+    },
+  ] = useSendOtpMutation();
+
+  const [
+    verifyOtp,
+    {
+      isLoading: isVerifyingOtp,
+      isSuccess: isVerifyOtpSuccess,
+      isError: isVerifyOtpError,
+      error: verifyOtpError,
+      data: verifyOtpData,
+    },
+  ] = useVerifyOtpMutation();
 
   // ✅ Step 1: Send OTP
   const handleSendOtp = async () => {
-    if (!mobile) {
-      setMessage("Please enter your phone number");
+    const mobileRegex = /^\d{10}$/;
+    if (!mobileRegex.test(mobile)) {
+      setMessage("Please enter a valid 10-digit phone number");
       setMsgType("error");
       return;
     }
-
     try {
-      setLoading(true);
-      const res = await fetch(`${API_BASE_URL}/auth/send-otp`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mobile }),
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        setOtpSent(true);
-        setMessage("OTP sent successfully ✅");
-        setMsgType("success");
-      } else {
-        setMessage(data.message || "Failed to send OTP ❌");
-        setMsgType("error");
-      }
-    } catch (error) {
-      setMessage("Something went wrong ❌");
-      setMsgType("error");
-    } finally {
-      setLoading(false);
+      await sendOtp({ mobile }).unwrap();
+    } catch (err) {
+      console.error("Failed to send OTP:", err);
     }
   };
+
+  useEffect(() => {
+    if (isSendOtpSuccess) {
+      setOtpSent(true);
+      setMessage("OTP sent successfully ✅");
+      setMsgType("success");
+    }
+    if (isSendOtpError) {
+      setMessage(sendOtpError?.data?.message || "Failed to send OTP ❌");
+      setMsgType("error");
+    }
+  }, [isSendOtpSuccess, isSendOtpError, sendOtpError]);
 
   // ✅ Step 2: Verify OTP
   const handleVerifyOtp = async () => {
-    if (!otp) {
-      setMessage("Please enter the OTP");
+    const otpRegex = /^\d{6}$/; // Assuming 6-digit OTP
+    if (!otpRegex.test(otp)) {
+      setMessage("Please enter a valid 6-digit OTP");
       setMsgType("error");
       return;
     }
-
     try {
-      setLoading(true);
-      const res = await fetch(`${API_BASE_URL}/auth/verify-otp`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mobile, otp }),
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("role", data.role);
-        localStorage.setItem("userId", data.userId);
-
-        setMessage("Login successful ✅");
-        setMsgType("success");
-
-        setTimeout(() => {
-          navigate("/"); // redirect to home or dashboard
-          window.location.reload();
-        }, 1000);
-      } else {
-        setMessage(data.message || "Invalid OTP ❌");
-        setMsgType("error");
-      }
-    } catch (error) {
-      setMessage("Something went wrong ❌");
-      setMsgType("error");
-    } finally {
-      setLoading(false);
+      await verifyOtp({ mobile, otp }).unwrap();
+    } catch (err) {
+      console.error("Failed to verify OTP:", err);
     }
   };
+
+  useEffect(() => {
+    if (isVerifyOtpSuccess && verifyOtpData) {
+      localStorage.setItem("token", verifyOtpData.token);
+      localStorage.setItem("role", verifyOtpData.role);
+      localStorage.setItem("userId", verifyOtpData.userId);
+
+      setMessage("Login successful ✅");
+      setMsgType("success");
+
+      setTimeout(() => {
+        navigate("/"); // redirect to home or dashboard
+        window.location.reload();
+      }, 1000);
+    }
+    if (isVerifyOtpError) {
+      setMessage(verifyOtpError?.data?.message || "Invalid OTP ❌");
+      setMsgType("error");
+    }
+  }, [isVerifyOtpSuccess, isVerifyOtpError, verifyOtpData, verifyOtpError, navigate]);
+
+  const loading = isSendingOtp || isVerifyingOtp;
 
   return (
     <motion.div

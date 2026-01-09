@@ -42,7 +42,7 @@ const OpenRaz = ({ setIsModalOpen, payement, update, selectedAddress, cartItems,
     try {
       setPlacingOrder(true);
 
-      const res = await fetch("https://swacchh.com/backend/api/orders", {
+      const res = await fetch("http://localhost:5000/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

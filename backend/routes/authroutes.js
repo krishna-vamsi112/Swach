@@ -1,7 +1,7 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import User from "../models/user.js";
 import twilio from "twilio";
 import dotenv from "dotenv";
 
@@ -115,9 +115,13 @@ router.post("/login", async (req, res) => {
 
 // ======================= SEND OTP =======================
 router.post("/send-otp", async (req, res) => {
+  console.log("👉 /auth/send-otp hit with body:", req.body);
   try {
-    // For testing, use a fixed number
-    const mobile = "+918143666507"; // Replace with the number you want to test
+    let { mobile } = req.body;
+    if (!mobile) return res.status(400).json({ success: false, message: "Mobile number is required" });
+
+    // Ensure +91 for Twilio if missing
+    if (!mobile.startsWith("+")) mobile = "+91" + mobile;
 
     // Generate 6-digit OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
@@ -158,13 +162,16 @@ router.post("/send-otp", async (req, res) => {
 
 // ======================= VERIFY OTP =======================
 router.post("/verify-otp", async (req, res) => {
+  console.log("👉 /auth/verify-otp hit with body:", req.body);
   try {
-    const { otp } = req.body;
-    const mobile = "+918143666507"; // Fixed number for test
+    let { mobile, otp } = req.body;
 
-    if (!otp) {
-      return res.status(400).json({ success: false, message: "OTP is required" });
+    if (!mobile || !otp) {
+      return res.status(400).json({ success: false, message: "Mobile and OTP are required" });
     }
+
+    // Ensure +91 for Twilio if missing
+    if (!mobile.startsWith("+")) mobile = "+91" + mobile;
 
     // Check OTP
     if (global.otpStore[mobile] !== otp) {

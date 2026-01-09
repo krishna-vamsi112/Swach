@@ -14,12 +14,13 @@ const AddressBook = ({ onAddressSelect }) => {
     city: "",
     state: "",
   });
+  
 
   // ✅ Fetch addresses
   const fetchAddresses = async () => {
     try {
       setLoading(true);
-      const res = await fetch("https://swacchh.com/backend/api/users/addresses", {
+      const res = await fetch("http://localhost:5000/users/addresses", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       const data = await res.json();
@@ -63,7 +64,7 @@ const AddressBook = ({ onAddressSelect }) => {
     };
 
     try {
-      const res = await fetch("https://swacchh.com/backend/api/users/addresses", {
+      const res = await fetch("http://localhost:5000/users/addresses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +102,7 @@ const AddressBook = ({ onAddressSelect }) => {
   // ✅ CORRECT
 const handleDeleteAddress = async (id) => {
   try {
-    const res = await fetch(`https://swacchh.com/backend/api/users/addresses/${id}`, {
+    const res = await fetch(`http://localhost:5000/users/addresses/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });

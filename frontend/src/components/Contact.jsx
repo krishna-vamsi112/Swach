@@ -34,7 +34,7 @@ const Contact = () => {
 
 
     try {
-      await fetch("https://swacchh.com/backend/api/leads", {
+      await fetch("http://localhost:5000/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

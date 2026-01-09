@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const profileApi = createApi({
   reducerPath: "profileApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://swacchh.com/backend/api/profile/",
+    baseUrl: "http://localhost:5000/api/profile/",
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
 

@@ -29,7 +29,7 @@ const AllProducts = () => {
     formData.append("image", file);
 
     try {
-      const res = await fetch("https://swacchh.com/backend/api/upload", {
+      const res = await fetch("http://localhost:5000/upload", {
         method: "POST",
         body: formData,
       });

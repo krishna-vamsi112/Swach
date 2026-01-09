@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 
-const baseUrl = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) || "https://swacchh.com/backend/api";
+const baseUrl = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) || "http://localhost:5000/api";
 
 
 export const apiService = createApi({
@@ -23,13 +23,18 @@ prepareHeaders: (headers) => {
 }),
 endpoints: (builder) => ({
 signup: builder.mutation({
-query: (data) => ({ url: "/auth/register", method: "POST", body: data }),
 }),
 login: builder.mutation({
 query: (data) => ({ url: "/auth/login", method: "POST", body: data }),
+}),
+sendOtp: builder.mutation({
+query: (data) => ({ url: "/auth/send-otp", method: "POST", body: data }),
+}),
+verifyOtp: builder.mutation({
+query: (data) => ({ url: "/auth/verify-otp", method: "POST", body: data }),
 }),
 }),
 });
 
 
-export const { useSignupMutation, useLoginMutation } = apiService;
+export const { useSignupMutation, useLoginMutation, useSendOtpMutation, useVerifyOtpMutation } = apiService;
