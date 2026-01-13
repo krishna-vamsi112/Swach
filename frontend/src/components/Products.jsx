@@ -1,14 +1,12 @@
 
 
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import SH2 from "../assets/SH2.png";
 import S2 from "../assets/SA3.webp";
 import SA1 from "../assets/SA1.webp";
 import icon3 from "../assets/icon3.png";
 import { useGetProductsQuery } from "../services/productsApi";  // ✅ RTK Query hook
-import { useEffect } from "react";
 
 
 
@@ -18,90 +16,7 @@ function Products() {
   }, []);
 
   const { data: products = [], isLoading, isError } = useGetProductsQuery();
-  const [inlineNotification, setInlineNotification] = useState(null);
-  const [selectedVariants, setSelectedVariants] = useState({});
-  const [quantities, setQuantities] = useState({});
   const navigate = useNavigate();
-
-  const handleVariantChange = (productId, variantIndex) => {
-    // Get grams from selected variant
-    let grams = 1;
-    if (products && products.length) {
-      const product = products.find((prod) => prod._id === productId);
-      if (product && product.variants[variantIndex] && product.variants[variantIndex].quantity) {
-        const match = product.variants[variantIndex].quantity.match(/(\d+)/);
-        grams = match ? parseInt(match[1], 10) : 1;
-      }
-    }
-    setSelectedVariants((prev) => ({
-      ...prev,
-      [productId]: variantIndex,
-    }));
-    // Set quantity to variant grams on variant change
-    setQuantities((prev) => ({
-      ...prev,
-      [productId]: grams,
-    }));
-  };
-
-  const handleQtyChange = (productId, type) => {
-    setQuantities((prev) => {
-      // Get variant grams as minimum
-      let grams = 1;
-      const variantIndex = selectedVariants[productId] || 0;
-      if (products && products.length) {
-        const product = products.find((prod) => prod._id === productId);
-        if (product && product.variants[variantIndex] && product.variants[variantIndex].quantity) {
-          const match = product.variants[variantIndex].quantity.match(/(\d+)/);
-          grams = match ? parseInt(match[1], 10) : 1;
-        }
-      }
-      const current = prev[productId] || grams;
-      if (type === "inc") {
-        return { ...prev, [productId]: current + 1 };
-      } else {
-        return { ...prev, [productId]: Math.max(current - 1, grams) };
-      }
-    });
-  };
-
-  const handleAddOnly = (product) => {
-    const variantIndex = selectedVariants[product._id] || 0;
-    const selectedVariant = product.variants[variantIndex];
-    const qty = quantities[product._id] || 1;
-
-    const cartItem = {
-      _id: product._id,
-      name: product.name,
-      image: product.image,
-      qty,
-      variant: selectedVariant.quantity,
-      price: selectedVariant.price,
-    };
-
-    const existingCart = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const existingIndex = existingCart.findIndex(
-      (item) =>
-        item._id === cartItem._id && item.variant === cartItem.variant
-    );
-
-    if (existingIndex >= 0) {
-      existingCart[existingIndex].qty += qty;
-    } else {
-      existingCart.push(cartItem);
-    }
-
-    localStorage.setItem("cartItems", JSON.stringify(existingCart));
-    window.dispatchEvent(new Event("cartUpdated"));
-
-    setInlineNotification(product._id);
-    setTimeout(() => setInlineNotification(null), 2500);
-  };
-
-  const handleBuyNow = (product) => {
-    handleAddOnly(product);
-    navigate("/cart");
-  };
 
   if (isLoading)
     return <div className="text-center py-10">Loading products...</div>;
@@ -166,40 +81,6 @@ function Products() {
         {/* ✅ Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((p) => {
-            const variantIndex = selectedVariants[p._id] || 0;
-            const selectedVariant = p.variants[variantIndex] || {};
-
-            // Get variant grams as minimum
-            let grams = 1;
-            if (selectedVariant.quantity) {
-              const match = selectedVariant.quantity.match(/(\d+)/);
-              grams = match ? parseInt(match[1], 10) : 1;
-            }
-            const qty = quantities[p._id] || grams;
-            const totalGrams = qty;
-            // Price per gram (float, not rounded)
-            const pricePerGram = grams > 0 ? selectedVariant.price / grams : 0;
-            // If user selects exactly the variant grams, use variant price
-            let totalPrice = 0;
-            if (totalGrams === grams) {
-              totalPrice = selectedVariant.price;
-            } else {
-              totalPrice = Math.round(pricePerGram * totalGrams);
-            }
-            // Discount logic
-            let discount = 0;
-            if (totalGrams >= 20 && totalGrams < 40) {
-              discount = 0.10;
-            } else if (totalGrams >= 40) {
-              discount = 0.11;
-            }
-            const discountedPrice = Math.floor(totalPrice - totalPrice * discount);
-
-            // Show discount label if applicable
-            let discountLabel = '';
-            if (discount === 0.10) discountLabel = ' (10% OFF)';
-            if (discount === 0.11) discountLabel = ' (11% OFF)';
-
             return (
               <motion.div
                 key={p._id}

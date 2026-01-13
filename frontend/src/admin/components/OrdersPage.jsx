@@ -390,18 +390,6 @@ const OrdersPage = () => {
   const [editingTracking, setEditingTracking] = useState({});
   const [selectedAddress, setSelectedAddress] = useState(null);
 
-  const handleDelete = async (orderId) => {
-    if (window.confirm("Are you sure you want to delete this order?")) {
-      try {
-        await deleteOrder(orderId).unwrap();
-        alert("✅ Order deleted successfully");
-      } catch (err) {
-        console.error("Failed to delete order:", err);
-        alert("❌ Failed to delete order");
-      }
-    }
-  };
-
   const handleTrackingSave = async (orderId) => {
     const trackingUrl = trackingInputs[orderId] || "";
 

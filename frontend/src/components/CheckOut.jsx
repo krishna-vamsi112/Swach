@@ -14,9 +14,8 @@ const CheckoutPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [placingOrder, setPlacingOrder] = useState(false);
-  const nav = useNavigate();
+  useNavigate();
   const [payement, setPayment] = useState("");
-  const [update, setupdate] = useState([]);
 
   // Coupon states
   const [couponCode, setCouponCode] = useState("");
@@ -109,7 +108,6 @@ const CheckoutPage = () => {
             selectedAddress={selectedAddress}
             payement={payement}
             cartItems={cartItems}
-            update={setupdate}
             setPlacingOrder={setPlacingOrder}
             appliedCoupon={appliedCoupon} // Pass applied coupon
           />

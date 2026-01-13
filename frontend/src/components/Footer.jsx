@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 // import logo from "../assets/logo.jpg";
 // import bg from "../assets/bg.jpg";
@@ -11,10 +11,7 @@ const Fssai = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/fssai-s
 const s2 = "https://swacchh-assets.s3.eu-north-1.amazonaws.com/assets/saf3.jpg";
 
 const Footer = () => {
-  const [showProducts, setShowProducts] = useState(false);
-
   const handleLinkClick = () => {
-    setShowProducts(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

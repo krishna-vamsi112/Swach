@@ -52,7 +52,8 @@ function DropNumber({ from, to, duration = 1500 }) {
     };
 
     requestAnimationFrame(animate);
-  }, [startAni]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [startAni, duration, end, start]);
 
   return <span ref={ref}>₹{value.toLocaleString("en-IN")}</span>;
 }

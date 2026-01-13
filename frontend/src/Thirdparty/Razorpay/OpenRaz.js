@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import Razorpay from "./RazorpayFromAppointment";
-import { useState } from "react";
 
 const OpenRaz = ({ setIsModalOpen, payement, update, selectedAddress, cartItems, setPlacingOrder, appliedCoupon }) => {
   const navigate = useNavigate();

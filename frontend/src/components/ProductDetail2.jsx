@@ -1,34 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import shilM from "../assets/shilM.jpg";
-import sh from "../assets/sh.jpg";
-import SH2 from "../assets/SH2.png";
-import SH3 from "../assets/SH3.webp";
-import shil3 from "../assets/shil3.jpg";
 import SA1 from "../assets/SA1.webp";
 import saf1 from "../assets/saf1.jpg";
 import saf2 from "../assets/saf2.jpg";
 import SA3 from "../assets/SA3.webp";
-import saf3 from "../assets/saf3.jpg";
-import icon from "../assets/icon.png";
-import icon3 from "../assets/icon3.png";
-import shi1 from "../assets/1.jpg";
-import shi2 from "../assets/2.jpg";
-import shi3 from "../assets/3.jpg";
-import shi4 from "../assets/4.jpg";
-import shi5 from "../assets/5.jpg";
-import { useEffect } from "react";
 
 function ProductCard() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  // Manage main image state
-  const [mainImage, setMainImage] = useState(shilM);
-
-  const thumbnails = [shi1, shi2, shi3, shi4];
-
   const [mainImages, setMainImages] = useState(SA3);
 
   const thumbnailstwo = [SA1, saf1, saf2, saf3,];

@@ -1,29 +1,6 @@
 import React, { useEffect } from "react";
 import logo from "../../assets/logo.jpg";
 const Razorpay = ({ parentCallback, amount ,setIsModalOpen}) => {
-  useEffect(() => {
-    // Dynamically load Razorpay script
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
-
-    script.onload = () => {
-      // Check if the script has loaded
-      if (window.Razorpay) {
-        // Proceed to open the payment modal only after the script is loaded
-        openPayModal();
-      } else {
-        console.error("Razorpay SDK failed to load.");
-      }
-    };
-
-    script.onerror = () => {
-      console.error("Failed to load the Razorpay script");
-    };
-
-    document.body.appendChild(script);
-  }, []);
-
   const openPayModal = () => {
     const options = {
       key:"rzp_live_RkdWJEtCNKnDkB",
@@ -66,6 +43,29 @@ const Razorpay = ({ parentCallback, amount ,setIsModalOpen}) => {
       console.error("Razorpay is not available");
     }
   };
+
+  useEffect(() => {
+    // Dynamically load Razorpay script
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+
+    script.onload = () => {
+      // Check if the script has loaded
+      if (window.Razorpay) {
+        // Proceed to open the payment modal only after the script is loaded
+        openPayModal();
+      } else {
+        console.error("Razorpay SDK failed to load.");
+      }
+    };
+
+    script.onerror = () => {
+      console.error("Failed to load the Razorpay script");
+    };
+
+    document.body.appendChild(script);
+  }, [amount, parentCallback, setIsModalOpen]);
 
   return <></>;
 };

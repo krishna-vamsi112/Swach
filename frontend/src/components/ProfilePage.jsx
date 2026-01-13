@@ -11,7 +11,6 @@ function ProfilePage() {
   }, []);
 
   const userId = localStorage.getItem("userId"); // logged-in user ID
-  const token = localStorage.getItem("token");   // JWT token
 
   const { data: userData, isLoading, error } = useGetUserByIdQuery(userId, {
     skip: !userId,
@@ -82,7 +81,7 @@ function ProfilePage() {
         };
       }
 
-      const response = await updateUser({ id: userId, data: payload }).unwrap();
+      await updateUser({ id: userId, data: payload }).unwrap();
 
       alert("Profile updated ✅");
       setIsEditing(false);

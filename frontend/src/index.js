@@ -42,7 +42,7 @@ import CheckOut from "./components/CheckOut";
 import Myorders from "./components/Myorders";
 import AllProducts from "./admin/components/AllProducts";
 import AdminDashboard from "./admin/components/Admindashboard";
-import Sidebar from "./admin/components/Sidebar";
+// import Sidebar from "./admin/components/Sidebar";
 import OrdersPage from "./admin/components/OrdersPage";
 import Customers from "./admin/components/Customers";
 import Leads from "./admin/components/Leads";

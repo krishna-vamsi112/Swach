@@ -197,8 +197,7 @@
 
 
 
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import { useGetOrdersQuery } from "../../services/ordersApi";
 import { useGetCustomersQuery } from "../../services/customersApi";
@@ -217,7 +216,6 @@ const getStatusClasses = (status) => {
 };
 
 export default function AdminDashboard() {
-  const navigate = useNavigate();
   const [timeframe, setTimeframe] = useState("all");
 
   const { data: orders = [] } = useGetOrdersQuery();
