@@ -110,7 +110,7 @@ const removeItem = (id, variant) => {
                   layout
                   className="flex items-center bg-white p-4 rounded-lg shadow-md"
                 >
-                  <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-md" />
+                  <img src={item.image && (item.image.startsWith('http://') || item.image.startsWith('https://')) ? item.image : '/default-image.png'} alt={item.name} className="w-24 h-24 object-cover rounded-md" />
                   <div className="ml-4 flex-1">
                     <h2 className="text-lg font-semibold">{item.name}</h2>
                     <p className="text-gray-600">₹{Math.floor(item.price)}</p>

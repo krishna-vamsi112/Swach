@@ -18,7 +18,7 @@ function Login() {
   const [message, setMessage] = useState(""); // ✅ state for login messages
   const [msgType, setMsgType] = useState(""); // ✅ success / error type
 
-  const from = location.state?.from || "/";
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -46,7 +46,8 @@ function Login() {
           if (res.data.role === "admin") {
             navigate("/admin");
           } else {
-            navigate(from, { replace: true });
+            const safeFrom = (typeof from === 'string' && from.startsWith('/')) ? from : '/';
+            navigate(safeFrom, { replace: true });
           }
           window.location.reload();
         }, 1000); // small delay to show message
