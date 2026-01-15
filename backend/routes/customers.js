@@ -1,4 +1,6 @@
 import express from "express";
+import bcrypt from "bcryptjs";
+import crypto from "crypto";
 import User from "../models/User.js";
 import auth from "../middleware/auth.js";
 
@@ -28,7 +30,7 @@ router.post("/",auth(["admin"]), async (req, res) => {
       mobile,
       address,
       role,
-      password: "default123", // 👈 you can generate / hash later if needed
+      password: await bcrypt.hash(crypto.randomBytes(16).toString('hex'), 10),
     });
 
     await user.save();
