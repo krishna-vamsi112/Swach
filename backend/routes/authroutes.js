@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
 import twilio from "twilio";
+import crypto from "crypto";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -187,7 +188,7 @@ router.post("/verify-otp", async (req, res) => {
       user = new User({
         name: "Test User",
         email: `${mobile}@swachh.com`,
-        password: "otp_login",
+        password: await bcrypt.hash(crypto.randomBytes(16).toString('hex'), 10),
         mobile,
       });
       await user.save();
