@@ -21,27 +21,22 @@ function Login() {
   const from = location.state?.from?.pathname || "/";
 
   // Whitelist of safe redirect routes
-  const SAFE_REDIRECT_ROUTES = ['/dashboard', '/profile', '/orders', '/cart', '/checkout', '/products', '/'];
+  const SAFE_REDIRECT_ROUTES = {
+    '/dashboard': '/dashboard',
+    '/profile': '/profile',
+    '/orders': '/orders',
+    '/cart': '/cart',
+    '/checkout': '/checkout',
+    '/products': '/products',
+    '/': '/'
+  };
 
   const getSafeRedirectUrl = (redirectPath) => {
-    if (typeof redirectPath !== 'string') return '/';
-    
-    // Block absolute URLs and protocol-based redirects
-    if (redirectPath.includes('://') || redirectPath.startsWith('//') || redirectPath.startsWith('\\')) {
-      return '/';
+    // Only allow whitelisted paths
+    if (redirectPath in SAFE_REDIRECT_ROUTES) {
+      return SAFE_REDIRECT_ROUTES[redirectPath];
     }
-
-    // Decode and check if it matches any safe route
-    try {
-      const decoded = decodeURIComponent(redirectPath);
-      if (SAFE_REDIRECT_ROUTES.some(route => decoded.startsWith(route))) {
-        return decoded;
-      }
-    } catch (e) {
-      // Invalid URI encoding
-      return '/';
-    }
-
+    // Default to home
     return '/';
   };
 
