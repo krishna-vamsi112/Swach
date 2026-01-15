@@ -29,7 +29,7 @@ router.put("/:id", async (req, res) => {
     user.photo = photo || user.photo;
 
     // ✅ If addresses exist in request, update
-    if (addresses && addresses.length > 0) {
+    if (addresses && Array.isArray(addresses) && addresses.length > 0) {
       if (user.addresses && user.addresses.length > 0) {
         user.addresses[0].address = addresses[0].address || user.addresses[0].address;
         user.addresses[0].mobile = addresses[0].mobile || user.addresses[0].mobile;

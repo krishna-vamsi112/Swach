@@ -9,7 +9,7 @@ router.post("/", auth(), async (req, res) => {
   try {
 const { items, totalAmount, addressId, address, razorpayPaymentId, razorpayOrderId, razorpaySignature, coupon } = req.body;
 
-    if (!items || items.length === 0) {
+    if (!items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "No items in order" });
     }
 

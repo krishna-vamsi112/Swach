@@ -46,7 +46,9 @@ function Login() {
           if (res.data.role === "admin") {
             navigate("/admin");
           } else {
-            const safeFrom = (typeof from === 'string' && from.startsWith('/')) ? from : '/';
+            // Validate redirect path - must start with single "/" and not contain protocol
+            const isValidRedirect = typeof from === 'string' && from.startsWith('/') && !from.startsWith('//');
+            const safeFrom = isValidRedirect ? from : '/';
             navigate(safeFrom, { replace: true });
           }
           window.location.reload();
