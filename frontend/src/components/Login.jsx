@@ -20,6 +20,31 @@ function Login() {
 
   const from = location.state?.from?.pathname || "/";
 
+  // Whitelist of safe redirect routes
+  const SAFE_REDIRECT_ROUTES = ['/dashboard', '/profile', '/orders', '/cart', '/checkout', '/products', '/'];
+
+  const getSafeRedirectUrl = (redirectPath) => {
+    if (typeof redirectPath !== 'string') return '/';
+    
+    // Block absolute URLs and protocol-based redirects
+    if (redirectPath.includes('://') || redirectPath.startsWith('//') || redirectPath.startsWith('\\')) {
+      return '/';
+    }
+
+    // Decode and check if it matches any safe route
+    try {
+      const decoded = decodeURIComponent(redirectPath);
+      if (SAFE_REDIRECT_ROUTES.some(route => decoded.startsWith(route))) {
+        return decoded;
+      }
+    } catch (e) {
+      // Invalid URI encoding
+      return '/';
+    }
+
+    return '/';
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage(""); // clear old messages
@@ -46,9 +71,7 @@ function Login() {
           if (res.data.role === "admin") {
             navigate("/admin");
           } else {
-            // Validate redirect path - must start with single "/" and not contain protocol
-            const isValidRedirect = typeof from === 'string' && from.startsWith('/') && !from.startsWith('//');
-            const safeFrom = isValidRedirect ? from : '/';
+            const safeFrom = getSafeRedirectUrl(from);
             navigate(safeFrom, { replace: true });
           }
           window.location.reload();
