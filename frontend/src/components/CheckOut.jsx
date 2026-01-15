@@ -127,7 +127,7 @@ const CheckoutPage = () => {
                   className="flex items-center border rounded-lg p-3 bg-gray-50"
                 >
                   <img
-                    src={item.image}
+                    src={item.image && (item.image.startsWith('http://') || item.image.startsWith('https://')) ? item.image : '/default-image.png'}
                     alt={item.name}
                     className="w-16 h-16 object-cover rounded-md"
                   />

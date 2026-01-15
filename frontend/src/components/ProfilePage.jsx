@@ -133,7 +133,7 @@ function ProfilePage() {
             >
               {user.photo && (
                 <img
-                  src={user.photo}
+                  src={user.photo && (user.photo.startsWith('http://') || user.photo.startsWith('https://')) ? user.photo : '/default-avatar.png'}
                   alt="Profile"
                   className="w-28 h-28 rounded-full border-4 border-[#FDF6ED] object-cover shadow-md"
                 />

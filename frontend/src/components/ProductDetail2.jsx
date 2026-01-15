@@ -3,7 +3,10 @@ import { motion } from "framer-motion";
 import SA1 from "../assets/SA1.webp";
 import saf1 from "../assets/saf1.jpg";
 import saf2 from "../assets/saf2.jpg";
+import saf3 from "../assets/saf3.jpg";
 import SA3 from "../assets/SA3.webp";
+import icon3 from "../assets/icon3.png";
+import icon from "../assets/icon.png";
 
 function ProductCard() {
   const [mainImages, setMainImages] = useState(SA3);
