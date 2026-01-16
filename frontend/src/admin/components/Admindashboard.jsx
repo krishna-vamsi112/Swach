@@ -202,6 +202,9 @@ import Sidebar from "./Sidebar";
 import { useGetOrdersQuery } from "../../services/ordersApi";
 import { useGetCustomersQuery } from "../../services/customersApi";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
+
 const getStatusClasses = (status) => {
   switch (status) {
     case "Delivered":
@@ -227,7 +230,7 @@ export default function AdminDashboard() {
   const [products, setProducts] = useState([]);
 
   React.useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch(`${API_URL}/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("Error fetching products:", err));
