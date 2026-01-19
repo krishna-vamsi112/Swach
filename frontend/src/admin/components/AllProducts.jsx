@@ -29,7 +29,7 @@ const AllProducts = () => {
     formData.append("image", file);
 
     try {
-      const res = await fetch("http://localhost:5000/upload", {
+      const res = await fetch("/api/upload", {
         method: "POST",
         body: formData,
       });
